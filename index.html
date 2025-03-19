@@ -7,88 +7,212 @@
 <title>Khemen - Empowering Communities Through Giving</title>
 <link href="https://fonts.googleapis.com/css?family=Oswald:400,300" rel='stylesheet' type='text/css' />
 <link href="https://fonts.googleapis.com/css?family=Abel|Satisfy" rel='stylesheet' type='text/css' />
-<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="styles.css" rel="stylesheet" type="text/css" media="screen" />
+<style type="text/css">
+    /* Center the buttons */
+    .centered-buttons {
+        text-align: center;
+        margin: 20px 0;
+    }
+    .donate-btn {
+        padding: 10px 20px;
+        margin: 0 10px;
+        background-color: #4CAF50; /* Green to match theme */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: 'Oswald', sans-serif;
+        font-size: 16px;
+    }
+    .donate-btn:hover {
+        background-color: #45a049;
+    }
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+    }
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+    }
+    .auth-btn {
+        padding: 10px 20px;
+        margin: 5px;
+        background-color: #008CBA; /* Blue for contrast */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: 'Oswald', sans-serif;
+    }
+    .auth-btn:hover {
+        background-color: #007bb5;
+    }
+</style>
 </head>
 <body>
 <div id="wrapper">
-	<div id="header-wrapper">
-		<div id="header" class="container">
-			<div id="logo">
-				<h1><a href="#">Khemen</a></h1>
-			</div>
-			<div id="menu">
-				<ul>
-					<li class="current_page_item"><a href="#">Home</a></li>
-					<li><a href="#">About Us</a></li>
-					<li><a href="#">Our Work</a></li>
-					<li><a href="./get-involved.html">Get Involved</a></li>
-					<li><a href="#">Donate</a></li>
-					<li><a href="#">Contact</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+    <div id="header-wrapper">
+        <div id="header" class="container">
+            <div id="logo">
+                <h1><a href="#">Khemen</a></h1>
+            </div>
+            <div id="menu">
+                <ul>
+                    <li class="current_page_item"><a href="#">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="work.html">Our Work</a></li>
+                    <li><a href="involved.html">Get Involved</a></li>
+                    <li><a href="donate.html">Donate></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-	<div id="page">
-		<div class="post">
-			<h2 class="title"><a href="#">Welcome to Khemen</a></h2>
-			<div class="entry">
-				<p><strong>Khemen</strong> is a non-profit organization dedicated to supporting communities through charitable donations and impactful programs. Our mission is to make giving simple, transparent, and meaningful.</p>
-				<p>We believe in the power of collective action to create lasting change. Whether through direct contributions or volunteering, every effort helps us build stronger communities.</p>
-			</div>
-		</div>
-	</div>
+    <div id="page">
+        <!-- Moved buttons and modals above Welcome to Khemen -->
+        <div class="centered-buttons">
+            <button class="donate-btn" onclick="showDonateModal()">Donate Now</button>
+            <button class="donate-btn" onclick="showSubscriptionModal()">Subscription Donor</button>
+        </div>
 
-	<div id="featured-content">
-		<div id="column1">
-			<h2>Our Mission</h2>
-			<p>To create a world where generosity fuels meaningful impact and sustainable change for those in need.</p>
-			<p class="button"><a href="#">Learn More</a></p>
-		</div>
-		<div id="column2">
-			<h2>How You Can Help</h2>
-			<p>Join us by making a donation, volunteering your time, or spreading awareness about our cause.</p>
-			<p class="button"><a href="./get-involved.html">Get Involved</a></p>
-		</div>
-		<div id="column3">
-			<h2>Make a Difference</h2>
-			<p>Your donations directly support programs that provide food, education, and resources to those in need.</p>
-			<p class="button"><a href="#">Donate Now</a></p>
-		</div>
-	</div>
+        <!-- Modal for Donate Now -->
+        <div id="donateModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="hideDonateModal()">×</span>
+                <h2>Please Choose an Option</h2>
+                <p>Continue to One-Time Donation</p>
+                <button class="auth-btn" onclick="window.location.href='donatenow.php'">One-Time Donation</button>
+                <button class="auth-btn" onclick="window.location.href='paypal_btn.html'">PayPal donation</button>
+            </div>
+        </div>
+
+        <!-- Modal for Subscription Donor -->
+        <div id="subscriptionModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="hideSubscriptionModal()">×</span>
+                <h2>Please Choose an Option</h2>
+                <p>Do you want to be a regular donor? Click sign up to create an account or sign in to log in.</p>
+                <button class="auth-btn" onclick="window.location.href='login.php'">Sign In</button>
+                <button class="auth-btn" onclick="window.location.href='signup.php'">Sign Up</button>
+            </div>
+        </div>
+
+        <div class="post">
+            <h2 class="title"><a href="#">Welcome to Khemen</a></h2>
+            <div class="entry">
+                <p><strong>Khemen</strong> is a non-profit organization dedicated to supporting communities through charitable donations and impactful programs. Our mission is to make giving simple, transparent, and meaningful.</p>
+                <p>We believe in the power of collective action to create lasting change. Whether through direct contributions or volunteering, every effort helps us build stronger communities.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="featured-content">
+        <div id="column1">
+            <h2>Our Mission</h2>
+            <p>To create a world where generosity fuels meaningful impact and sustainable change for those in need.</p>
+            <p class="button"><a href="#">Learn More</a></p>
+        </div>
+        <div id="column2">
+            <h2>How You Can Help</h2>
+            <p>Join us by making a donation, volunteering your time, or spreading awareness about our cause.</p>
+            <p class="button"><a href="#">Get Involved</a></p>
+        </div>
+        <div id="column3">
+            <h2>Make a Difference</h2>
+            <p>Your donations directly support programs that provide food, education, and resources to those in need.</p>
+            <p class="button"><a href="#">Donate Now</a></p>
+        </div>
+    </div>
 </div>
 
 <div id="footer-content-wrapper">
-	<div id="footer-content">
-		<div id="fbox1">
-			<h2>Quick Links</h2>
-			<ul class="style1">
-				<li><a href="#">About Us</a></li>
-				<li><a href="#">Our Work</a></li>
-				<li><a href="./get-involved.html">Get Involved</a></li>
-				<li><a href="#">Donate</a></li>
-				<li><a href="#">Contact</a></li>
-			</ul>
-		</div>
-		<div id="fbox2">
-			<h2>Contact Us</h2>
-			<p>Email: info@khemen.org</p>
-			<p>Phone: (123) 456-7890</p>
-			<p>Address: 123 Charity Lane, Community City, CC 56789</p>
-		</div>
-		<div id="fbox3">
-			<h2>Follow Us</h2>
-			<ul class="style1">
-				<li><a href="#">Facebook</a></li>
-				<li><a href="#">Twitter</a></li>
-				<li><a href="#">Instagram</a></li>
-			</ul>
-		</div>
-	</div>
+    <div id="footer-content">
+        <div id="fbox1">
+            <h2>Quick Links</h2>
+            <ul class="style1">
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Our Work</a></li>
+                <li><a href="#">Get Involved</a></li>
+                <li><a href="#">Donate</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div id="fbox2">
+            <h2>Contact Us</h2>
+            <p>Email: info@khemen.org</p>
+            <p>Phone: (123) 456-7890</p>
+            <p>Address: 123 Charity Lane, Community City, CC 56789</p>
+        </div>
+        <div id="fbox3">
+            <h2>Follow Us</h2>
+            <ul class="style1">
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 <div id="footer">
-	<p>&copy; 2025 Khemen. All rights reserved.</p>
+    <p>© 2025 Khemen. All rights reserved.</p>
 </div>
+
+<script>
+    function showDonateModal() {
+        document.getElementById("donateModal").style.display = "block";
+    }
+
+    function hideDonateModal() {
+        document.getElementById("donateModal").style.display = "none";
+    }
+
+    function showSubscriptionModal() {
+        document.getElementById("subscriptionModal").style.display = "block";
+    }
+
+    function hideSubscriptionModal() {
+        document.getElementById("subscriptionModal").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        var donateModal = document.getElementById("donateModal");
+        var subscriptionModal = document.getElementById("subscriptionModal");
+        if (event.target == donateModal) {
+            donateModal.style.display = "none";
+        }
+        if (event.target == subscriptionModal) {
+            subscriptionModal.style.display = "none";
+        }
+    }
+</script>
 </body>
 </html>
