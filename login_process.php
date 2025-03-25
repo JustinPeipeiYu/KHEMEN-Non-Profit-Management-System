@@ -1,46 +1,55 @@
 <?php
-session_start();
-$db = new PDO("mysql:host=10.180.98.21;dbname=khemen-database", "dbuser", "dbpass");
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+$servername = "10.180.98.35";
+$username = "webuser"; // Adjust accordingly
+$password = "NewWebUserPassword"; // Adjust accordingly
+$dbname = "Khemen_OneTimeDatabase";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $input = $_POST['email_or_id'];
-    $password = $_POST['password'];
+        // Get input value
+    $email = $_POST['email']; // Assuming email is coming from a POST request
 
-    // Get email from MySQL based on email or user_id
-    try {
-        $stmt = $db->prepare("SELECT email FROM users WHERE email = ? OR user_id = ?");
-        $stmt->execute([$input, $input]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        $email = $user['email'] ?? $input; // Use input directly if it’s an email not found as user_id
-    } catch (PDOException $e) {
-        echo "Database error: " . $e->getMessage();
-        exit;
+    // Check if email is provided and not empty
+    if (empty($email)) {
+        die('Email is empty');
     }
 
-    // Authenticate against AD (Windows Server at 10.180.98.22)
-    $ldap = ldap_connect("ldap://10.180.98.22");
-    if ($ldap) {
-        $bind = @ldap_bind($ldap, $email, $password); // Suppress warnings with @
-        if ($bind) {
-            // Get user_id for session
-            $stmt = $db->prepare("SELECT user_id FROM users WHERE email = ?");
-            $stmt->execute([$email]);
-            $user_id = $stmt->fetchColumn();
-            if ($user_id) {
-                $_SESSION['user_id'] = $user_id;
-                header("Location: dashboard.php"); // Redirect to donation page
-                exit;
-            } else {
-                echo "User not found in database.";
-            }
-        } else {
-            echo "Invalid credentials.";
+    // Prepare statement
+    $stmt = $conn->prepare("SELECT * FROM Khemen_OneTimeDonors WHERE email = ?");
+    if ($stmt === false) {
+        die('MySQL prepare error: ' . $conn->error);
+    }
+
+    // Bind parameters
+    $stmt->bind_param("s", $email);
+
+    // Execute the query
+    $stmt->execute();
+
+    // Get results
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        // Process the result
+        while ($row = $result->fetch_assoc()) {
+            // Do something with the row
+            echo "You are now logged in.";
         }
-        ldap_close($ldap);
     } else {
-        echo "LDAP connection failed.";
+        echo "No user found with that email.";
     }
-} else {
-    echo "Invalid request method.";
+
+    // Close the statement and connection
+    $stmt->close();
+    $conn->close();
 }
 ?>
