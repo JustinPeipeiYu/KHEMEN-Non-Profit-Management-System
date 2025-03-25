@@ -16,7 +16,9 @@
     <div id="header-wrapper">
         <div id="header" class="container">
             <div id="logo">
-                <h1><a href="#">Khemen</a></h1>
+                <a href="index.html">
+                    <img src="img/Klogo-dark-removebg.png" alt="Khemen Logo" style="height: 150px;">
+                </a>
             </div>
             <div id="menu">
                 <ul>
@@ -30,15 +32,17 @@
             </div>
         </div>
     </div>
-
+    <div id="officePic">
+        <img src="img/office.jpg" alt="Khemen Office">
+    </div>
     <div id="page">
         <!-- Moved buttons and modals above Welcome to Khemen -->
         <div class="centered-buttons">
-            <button class="donate-btn" onclick="showDonateModal()">Donate Now</button>
-            <button class="donate-btn" onclick="showSubscriptionModal()">Subscription Donor</button>
+            <button class="donate-btn" onclick="showDonateNowModal();showDonateNowClose()">Donate Now</button>
+            <button class="donate-btn" onclick="showLoginModal();showLoginClose()">Subscription Donor</button>
         </div>
 
-        <!-- Modal for Donate -->
+        <!-- Modal for Donate 
         <div id="donateModal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="hideDonateModal()">×</span>
@@ -47,9 +51,16 @@
                 <button class="auth-btn" onclick="showDonateNowModal()">One-Time Donation</button>
             </div>
         </div>
+        -->
+
+        <!--Modal for close Donate now-->
+        
 
         <!--Modal for Donate now-->
         <div id="donateNowModal" class="modal">
+            <div id="donateNowClose" class="modalClose">
+                <button  onclick="hideDonateNowModal();hideDonateNowClose()">X</button> 
+            </div>
             <div class="modal-content">
                 <h2>Donate Now</h2>
                 <form action="donatenow_process.php" method="post" onsubmit="return validateForm()">
@@ -114,17 +125,34 @@
             </div>
         </div>
         
-        <!-- Modal for Subscription Donor -->
+        <!-- Modal for Subscription Donor 
+        
         <div id="subscriptionModal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="hideSubscriptionModal()">×</span>
                 <h2>Please Choose an Option</h2>
-                <p>Do you want to be a regular donor? Click sign up to create an account or sign in to log in.</p>
-                <button class="auth-btn" onclick="window.location.href='login.php'">Sign In</button>
-                <button class="auth-btn" onclick="window.location.href='signup.php'">Sign Up</button>
+                <p>Are you a returning donor? Click sign in to view summation information.</p>
+                <button class="auth-btn" onclick="showLoginModal();hideSubscriptionModal()">Sign In</button>
             </div>
         </div>
+        -->
 
+        
+        <!-- Modal for Login-->
+        <div id="loginModal" class="modal">
+            <!-- Modal for close Login-->
+            <div id="loginClose" class="modalClose">
+                <button  onclick="hideLoginModal();hideLoginClose()">X</button> 
+            </div>
+            <div class="modal-content">
+                <h2>Sign In</h2>
+                <form action="login_process.php" method="post">
+                    <input type="text" name="email" placeholder="Email Address" required style="width: 250px; ">
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+        
         <div class="post">
             <h2 class="title"><a href="#">Welcome to Khemen</a></h2>
             <div class="entry">
@@ -187,6 +215,7 @@
 </div>
 
 <script>
+    /*
     function showDonateModal() {
         document.getElementById("donateModal").style.display = "block";
     }
@@ -202,13 +231,32 @@
     function hideSubscriptionModal() {
         document.getElementById("subscriptionModal").style.display = "none";
     }
+    */
     function showDonateNowModal(){
         document.getElementById("donateNowModal").style.display = "block";
     }
     function hideDonateNowModal(){
         document.getElementById("donateNowModal").style.display = "none";
     }
-
+    function showDonateNowClose(){
+        document.getElementById("donateNowClose").style.display = "block";
+    }
+    function hideDonateNowClose(){
+        document.getElementById("donateNowClose").style.display = "none";
+    }
+    function showLoginModal(){
+        document.getElementById("loginModal").style.display = "block";
+    }
+    function hideLoginModal(){
+        document.getElementById("loginModal").style.display = "none";
+    }
+    function showLoginClose(){
+        document.getElementById("loginClose").style.display = "block";
+    }
+    function hideLoginClose(){
+        document.getElementById("loginClose").style.display = "none";
+    }
+    /*
     window.onclick = function(event) {
         var donateModal = document.getElementById("donateModal");
         var subscriptionModal = document.getElementById("subscriptionModal");
@@ -219,7 +267,7 @@
             subscriptionModal.style.display = "none";
         }
     }
-
+    */
     function validateForm() {
             // Validate phone number
             var phoneNumber = document.getElementById("phone").value;

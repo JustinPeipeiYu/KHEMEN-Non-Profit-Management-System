@@ -4,16 +4,15 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Database credentials
-$servername = "localhost"; // Change if your MySQL server is not on localhost
+$servername = "10.180.98.35"; // Change if your MySQL server is not on localhost
 $username = "webuser";        // Change to your MySQL username
 $password = "NewWebUserPassword";            // Change to your MySQL password
-$dbname = "khemen_backup";     // Change to your database name
+$dbname = "Khemen_OneTimeDatabase";     // Change to your database name
 
-
-//Create connection
+// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-//Check connection
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
