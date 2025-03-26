@@ -83,7 +83,7 @@ a:hover {}
 
 #logo {
 	float: left;
-	width: 300px;
+	width: 30%;
 	margin: 0;
 	padding: 0;
 	color: #FFFFFF;
@@ -144,7 +144,7 @@ a:hover {}
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
+	width: 55vw;
 }
 #officePic img {
 	max-width: 100%;
@@ -193,15 +193,17 @@ a:hover {}
 /* Menu */
 
 #menu {
+	display: flex;
 	float: right;
-	width: 500px;
+	width: 70%;
 	height: 90px;
 	margin: 0 auto;
 	padding: 0;
 }
 
 #menu ul {
-	float: right;
+	display: flex;
+	justify-content: space-between;
 	margin: 0;
 	padding: 50px 0px 0px 0px;
 	list-style: none;
