@@ -445,18 +445,18 @@ a:hover {}
 
 #footer-content #fbox1 {
 	float: left;
-	width: 300px;
+	width: 30%;
 	margin-right: 50px;
 }
 
 #footer-content #fbox2 {
 	float: left;
-	width: 300px;
+	width: 30%;
 }
 
 #footer-content #fbox3 {
 	float: right;
-	width: 300px;
+	width: 30%;
 }
 
 #footer-content a {}
