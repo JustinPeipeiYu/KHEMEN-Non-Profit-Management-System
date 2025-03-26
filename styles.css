@@ -1,7 +1,5 @@
 /*
-Design by TEMPLATED
-http://templated.co
-Released for free under the Creative Commons Attribution License
+© 2025 Khemen Stylesheet.
 */
 
 body {
@@ -73,7 +71,7 @@ a:hover {}
 
 #header {
 	overflow: hidden;
-	width: 55vw;
+	width: 65vw;
 	height: 150px;
 	margin: 0 auto;
 	padding: 0px 0px;
@@ -417,11 +415,10 @@ a:hover {}
 
 /* Three Column Footer Content */
 
-#footer-content-wrapper {}
 
 #footer-content {
 	overflow: hidden;
-	width: 55vw;
+	width: 65vw;
 	margin: 0px auto;
 	padding: 50px 0px;
 	color: #FFFFFF;
