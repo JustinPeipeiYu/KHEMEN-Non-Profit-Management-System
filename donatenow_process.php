@@ -49,7 +49,7 @@ if ($stmt === false) {
 
     // Execute the query
     if ($stmt->execute()) {
-        echo "Thank you for your donation!";
+        echo "<h2>Thank you for your donation!</h2>";
     } else {
         echo "Error: " . $stmt->error;
     }

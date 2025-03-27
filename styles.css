@@ -791,6 +791,25 @@ ul.style1 .first {
 	background-color: #0056b3;
 }
 
+#donateSubmitModal {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	
+	display: none;
+	position: fixed;
+	z-index: 1;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0);
+	height: 40%;
+	width: 30vw;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%); 
+}
+
 #loginClose button {
 	background-color: darkred;
 	
@@ -809,3 +828,10 @@ ul.style1 .first {
 	background-color: red;
 }
 
+#donateSubmitClose button{
+	background-color: darkred;
+}
+
+#donateSubmitClose button:hover {
+	background-color: red;
+}

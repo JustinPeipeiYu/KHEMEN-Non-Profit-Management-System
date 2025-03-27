@@ -57,8 +57,15 @@
         </div>
         -->
 
-            <!--Modal for close Donate now-->
+            <!--Modal for Donate Receipt-->
+            <div id="donateSubmitModal" class="modal">
+                <div id="donateSubmitClose" class="modalClose">
+                    <button onclick="hideDonateSubmitModal();hideDonateSubmitClose()">X</button>
+                </div>
+                <div class="modal-content">
 
+                </div>
+            </div>
 
             <!--Modal for Donate now-->
             <div id="donateNowModal" class="modal">
@@ -67,7 +74,7 @@
                 </div>
                 <div class="modal-content">
                     <h2>Donate Now</h2>
-                    <form action="donatenow_process.php" method="post" onsubmit="return validateForm()">
+                    <form action="submitDonation()" method="post" onsubmit="return validateForm()">
                         <label for="firstname">First Name</label>
                         <input type="text" id="firstname" name="firstname" placeholder="First Name" required>
 

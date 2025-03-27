@@ -25,6 +25,18 @@ function showLoginClose() {
 function hideLoginClose() {
     document.getElementById("loginClose").style.display = "none";
 }
+function showDonateSubmitModal(){
+    document.getElementById("donateSubmitModal").style.display = "block";
+}
+function hideDonateSubmitModal(){
+    document.getElementById("donateSubmitModal").style.display = "none";
+}
+function showDonateSubmitClose(){
+    document.getElementById("donateSubmitClose").style.display = "block";
+}
+function hideDonateSubmitClose(){
+    document.getElementById("donateSubmitClose").style.display = "none";
+}
 /*
 window.onclick = function(event) {
     var donateModal = document.getElementById("donateModal");
@@ -37,6 +49,16 @@ window.onclick = function(event) {
     }
 }
 */
+function submitDonation(){
+    fetch('donatenow_process.php')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("donateSubmitModal").getElementsByClassName("modal-content").innerHTML = data;
+    });
+    showDonateSubmitModal();
+    showDonateSubmitClose();
+}
+
 function updatePost(section) {
     var title = document.querySelector("#page .post .title");
     var entry = document.querySelector("#page .post .entry");
