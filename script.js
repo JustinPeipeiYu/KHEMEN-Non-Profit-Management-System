@@ -50,7 +50,10 @@ window.onclick = function(event) {
 }
 */
 function submitDonation(){
-    fetch('donatenow_process.php',{ method: 'POST' })
+    // Collect form data
+    const formData = new FormData(this);
+    // Send POST request with the form data
+    fetch('donatenow_process.php',{ method: 'POST', body: formData})
     .then(response => response.text())
     .then(data => {
         document.querySelector("#page #donateSubmitModal .modal-content").outerHTML = data;
