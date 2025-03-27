@@ -1,6 +1,15 @@
 /*
 © 2025 Khemen Script.
 */
+document.getElementById("donationForm").addEventListener("submit", function(event) {
+    event.preventDefault(); //Prevent default form submission
+
+    if (!validateForm()) {
+        return; //Stop if validation fails
+    }
+
+    submitDonation(event); //Call submit function if valid
+});
 function showDonateNowModal() {
     document.getElementById("donateNowModal").style.display = "block";
 }
