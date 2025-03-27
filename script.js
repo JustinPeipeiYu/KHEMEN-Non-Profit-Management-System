@@ -57,6 +57,8 @@ function submitDonation(){
     });
     showDonateSubmitModal();
     showDonateSubmitClose();
+    hideDonateNowModal();
+    hideDonateNowClose();
 }
 
 function updatePost(section) {
