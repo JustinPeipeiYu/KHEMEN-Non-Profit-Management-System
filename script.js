@@ -53,7 +53,7 @@ function submitDonation(){
     fetch('donatenow_process.php')
     .then(response => response.text())
     .then(data => {
-        document.getElementById("donateSubmitModal").getElementsByClassName("modal-content").innerHTML = data;
+        document.getElementById("donateSubmitModal").getElementsByClassName("modal-content")[0].innerHTML = data;
     });
     showDonateSubmitModal();
     showDonateSubmitClose();
