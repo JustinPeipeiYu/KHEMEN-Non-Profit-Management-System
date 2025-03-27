@@ -81,7 +81,7 @@ function submitDonation(event){
     const jsonData = JSON.stringify(formData);
 
     // Send POST request with the form data
-    fetch('donatenow_process.php',{ method: 'POST', headers: {
+    fetch('https://10.180.98.20/Khemenwebpage/donatenow_process.php',{ method: 'POST', headers: {
             'Content-Type': 'application/json'  // Ensure the server knows the data is JSON
         }, body: jsonData})
     .then(response => response.json())
