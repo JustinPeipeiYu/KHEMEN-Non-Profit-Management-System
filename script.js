@@ -50,10 +50,10 @@ window.onclick = function(event) {
 }
 */
 function submitDonation(){
-    fetch('donatenow_process.php')
+    fetch('donatenow_process.php',{ method: 'POST' })
     .then(response => response.text())
     .then(data => {
-        document.getElementById("donateSubmitModal").getElementsByClassName("modal-content")[0].innerHTML = data;
+        document.getElementById("donateSubmitModal").getElementsByClassName("modal-content")[0].outerHTML = data;
     });
     showDonateSubmitModal();
     showDonateSubmitClose();
