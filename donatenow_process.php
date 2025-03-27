@@ -2,6 +2,10 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+// Allow cross-origin requests from any domain (or specify a particular domain)
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 // Database credentials
 $servername = "10.180.98.35"; // Change if your MySQL server is not on localhost
