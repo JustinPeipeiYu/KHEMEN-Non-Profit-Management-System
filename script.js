@@ -83,7 +83,7 @@ function submitDonation(event){
     // Send POST request with the form data
     fetch('donatenow_process.php',{ method: 'POST', headers: {
             'Content-Type': 'application/json'  // Ensure the server knows the data is JSON
-        }, body: formData})
+        }, body: jsonData})
     .then(response => response.json())
     .then(data => {
         const modalContent = document.querySelector("#page #donateSubmitModal .modal-content")
