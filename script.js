@@ -61,18 +61,34 @@ window.onclick = function(event) {
 function submitDonation(event){
     //prevents page reload
     event.preventDefault();
-    // get form element
-    const form = event.target;
-    const formData = new FormData(form);
+    // get form data
+    const formData = {
+        firstname: document.getElementById('firstname').value,
+        lastname: document.getElementById('lastname').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        address: document.getElementById('address').value,
+        city: document.getElementById('city').value,
+        province: document.getElementById('province').value,
+        postalcode: document.getElementById('postalcode').value,
+        amount: document.getElementById('amount').value,
+        cardnumber: document.getElementById('cardnumber').value,
+        expiry: document.getElementById('expiry').value,
+        cvv: document.getElementById('cvv').value
+    }
+
+    // Convert form data to JSON
+    const jsonData = JSON.stringify(formData);
+
     // Send POST request with the form data
-    fetch('donatenow_process.php',{ method: 'POST', body: formData})
-    .then(response => response.text())
+    fetch('donatenow_process.php',{ method: 'POST', headers: {
+            'Content-Type': 'application/json'  // Ensure the server knows the data is JSON
+        }, body: formData})
+    .then(response => response.json())
     .then(data => {
         const modalContent = document.querySelector("#page #donateSubmitModal .modal-content")
         if (modalContent) {
-            modalContent.innerHTML = data;
-        } else {
-            console.error("Sorry, modal content not found.");
+            modalContent.innerHTML = data.message;
         }
     });
     showDonateSubmitModal();

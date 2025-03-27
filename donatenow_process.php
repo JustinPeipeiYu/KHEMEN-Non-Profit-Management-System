@@ -17,6 +17,19 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Get the raw POST data (the JSON sent by fetch)
+$jsonData = file_get_contents('php://input');
+
+// Decode the JSON data into a PHP associative array
+$data = json_decode($jsonData, true);
+
+// Check if decoding was successful
+if ($data === null) {
+    // Handle error if JSON is invalid
+    echo json_encode(['status' => 'error', 'message' => 'Invalid JSON data']);
+    exit;
+}
+
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect form data
@@ -48,10 +61,11 @@ if ($stmt === false) {
     $stmt->bind_param("ssssssssd", $firstName, $lastName, $email, $phone, $address, $city, $province, $postalCode, $amount);
 
     // Execute the query
+    // Return json response
     if ($stmt->execute()) {
-        echo "<h2>Thank you for your donation!</h2>";
+        echo json_encode(['status' => 'success', 'message' => '<h2>Donation processed successfully.</h2>']);
     } else {
-        echo "Error: " . $stmt->error;
+        echo json_encode(['status' => 'error', 'message' => '<h2>Failed to process donation.</h2>']);
     }
 
     // Close the statement and connection
