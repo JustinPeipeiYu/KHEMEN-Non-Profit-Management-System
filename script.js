@@ -56,7 +56,7 @@ function submitDonation(){
     fetch('donatenow_process.php',{ method: 'POST', body: formData})
     .then(response => response.text())
     .then(data => {
-        document.querySelector("#page #donateSubmitModal .modal-content").outerHTML = data;
+        document.querySelector("#page #donateSubmitModal .modal-content").innerHTML = data;
     });
     showDonateSubmitModal();
     showDonateSubmitClose();
