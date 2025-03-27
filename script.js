@@ -70,6 +70,7 @@ function submitDonation(event){
     showDonateSubmitClose();
     hideDonateNowModal();
     hideDonateNowClose();
+    return false; // Prevents the form from reloading
 }
 
 function updatePost(section) {

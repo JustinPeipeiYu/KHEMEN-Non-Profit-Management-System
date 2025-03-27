@@ -70,11 +70,11 @@
             <!--Modal for Donate now-->
             <div id="donateNowModal" class="modal">
                 <div id="donateNowClose" class="modalClose">
-                    <button onclick="hideDonateNowModal();hideDonateNowClose(event)">X</button>
+                    <button onclick="hideDonateNowModal();hideDonateNowClose()">X</button>
                 </div>
                 <div class="modal-content">
                     <h2>Donate Now</h2>
-                    <form onsubmit="return validateForm();submitDonation()">
+                    <form onsubmit="return validateForm(); return submitDonation(event)">
                         <label for="firstname">First Name</label>
                         <input type="text" id="firstname" name="firstname" placeholder="First Name" required>
 
