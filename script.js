@@ -49,7 +49,9 @@ window.onclick = function(event) {
     }
 }
 */
-function submitDonation(){
+function submitDonation(event){
+    //prevents page reload
+    event.preventDefault();
     // Collect form data
     const formData = new FormData(this);
     // Send POST request with the form data
@@ -60,8 +62,8 @@ function submitDonation(){
     });
     showDonateSubmitModal();
     showDonateSubmitClose();
-    hideDonateNowModal();
-    hideDonateNowClose();
+    //hideDonateNowModal();
+    //hideDonateNowClose();
 }
 
 function updatePost(section) {
