@@ -52,18 +52,24 @@ window.onclick = function(event) {
 function submitDonation(event){
     //prevents page reload
     event.preventDefault();
-    // Collect form data
-    const formData = new FormData(this);
+    // get form element
+    const form = event.target;
+    const formData = new FormData(form);
     // Send POST request with the form data
     fetch('donatenow_process.php',{ method: 'POST', body: formData})
     .then(response => response.text())
     .then(data => {
-        document.querySelector("#page #donateSubmitModal .modal-content").innerHTML = data;
+        const modalContent = document.querySelector("#page #donateSubmitModal .modal-content")
+        if (modalContent) {
+            modalContent.innerHTML = data;
+        } else {
+            console.error("Sorry, modal content not found.");
+        }
     });
     showDonateSubmitModal();
     showDonateSubmitClose();
-    //hideDonateNowModal();
-    //hideDonateNowClose();
+    hideDonateNowModal();
+    hideDonateNowClose();
 }
 
 function updatePost(section) {
