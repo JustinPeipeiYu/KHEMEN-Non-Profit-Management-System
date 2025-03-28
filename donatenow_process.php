@@ -14,6 +14,18 @@ if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") {
     exit;
 }
 
+// Process the actual request
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get Authorization header
+    $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+
+    if (!$authHeader || $authHeader !== "Bearer token123") {
+        http_response_code(401); // Unauthorized
+        echo json_encode(["status" => "error", "message" => "Invalid or missing Authorization token"]);
+        exit;
+    }
+}
+
 // Database credentials
 $servername = "10.180.98.35"; // Change if your MySQL server is not on localhost
 $username = "webuser";        // Change to your MySQL username
@@ -25,7 +37,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check database connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    echo json_encode(["status" => "error", "message" => "Database connection failed."]);
 }
 
 //read incoming form data
@@ -60,13 +72,15 @@ if ($data !== null) {
 
 // Validate form data
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    die("Invalid email format");
+    echo json_encode(["status" => "error", "message" => "Invalid email format."]);
+    exit;
 }
 
 // Prepare and execute database insertion and return JSON response
 $stmt = $conn->prepare("INSERT INTO Khemen_OneTimeDonors (firstname, lastname, email, phone, address, city, province, postalcode, amount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 if ($stmt === false) {
-    die("Prepare failed: " . $conn->error);
+    echo json_encode(["status" => "error", "message" => "Database connection failed."]);
+    exit;
 }
 $stmt->bind_param("ssssssssd", $firstName, $lastName, $email, $phone, $address, $city, $province, $postalCode, $amount);
 
