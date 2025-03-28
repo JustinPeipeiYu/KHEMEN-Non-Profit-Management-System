@@ -1,15 +1,6 @@
 /*
-© 2025 Khemen Script.
+© 2025 Khemen Front-End Script.
 */
-document.getElementById("donationForm").addEventListener("submit", function(event) {
-    event.preventDefault(); //Prevent default form submission
-
-    if (!validateForm()) {
-        return; //Stop if validation fails
-    }
-
-    submitDonation(event); //Call submit function if valid
-});
 function showDonateNowModal() {
     document.getElementById("donateNowModal").style.display = "block";
 }
@@ -58,10 +49,19 @@ window.onclick = function(event) {
     }
 }
 */
-function submitDonation(event){
-    //prevents page reload
-    event.preventDefault();
-    // get form data
+document.getElementById("donationForm").addEventListener("submit", function(event) {
+    event.preventDefault(); //Prevent page from reloading
+
+    if (!validateForm()) {
+        return; //Stop if validation fails
+    }
+
+    submitDonation(event); //send form data to PHP script
+    return false;
+});
+
+function submitDonation(){
+    // preparing form data
     const formData = {
         firstname: document.getElementById('firstname').value,
         lastname: document.getElementById('lastname').value,
@@ -76,15 +76,13 @@ function submitDonation(event){
         expiry: document.getElementById('expiry').value,
         cvv: document.getElementById('cvv').value
     }
-
-    // Convert form data to JSON
     const jsonData = JSON.stringify(formData);
 
-    // Send POST request with the form data
-    fetch('https://10.180.98.20/Khemenwebpage/donatenow_process.php',{ method: 'POST', headers: {
-            'Content-Type': 'application/json'  // Ensure the server knows the data is JSON
+    // Send the form data to the PHP script via fetch API
+    fetch('donatenow_process.php',{ method: 'POST', headers: {
+            'Content-Type': 'application/json' 
         }, body: jsonData})
-    .then(response => response.json())
+    .then(response => response.json())//convert the PHP response to json object
     .then(data => {
         const modalContent = document.querySelector("#page #donateSubmitModal .modal-content")
         if (modalContent) {
@@ -95,7 +93,6 @@ function submitDonation(event){
     showDonateSubmitClose();
     hideDonateNowModal();
     hideDonateNowClose();
-    return false; // Prevents the form from reloading
 }
 
 function updatePost(section) {
