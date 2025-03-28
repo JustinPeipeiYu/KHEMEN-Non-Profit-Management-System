@@ -7,6 +7,8 @@ error_reporting(E_ALL);
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
+// Allow credentials (cookies, sessions) to be sent
+header("Access-Control-Allow-Credentials: true");
 
 // Handle Cross Origin Resource Sharing preflight options request
 if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") {
