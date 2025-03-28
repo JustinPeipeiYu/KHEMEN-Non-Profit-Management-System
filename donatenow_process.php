@@ -8,7 +8,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
-// Handle Cross Origin Resource Sharing preflight request
+// Handle Cross Origin Resource Sharing preflight options request
 if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") {
     http_response_code(204);
     exit;

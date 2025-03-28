@@ -80,7 +80,8 @@ function submitDonation(){
 
     // Send the form data to the PHP script via fetch API
     fetch('donatenow_process.php',{ method: 'POST', headers: {
-            'Content-Type': 'application/json' 
+            'Content-Type': 'application/json', 
+            'Authorization': 'Bearer token123'
         }, body: jsonData})
     .then(response => response.json())//convert the PHP response to json object
     .then(data => {
