@@ -79,7 +79,7 @@ function submitDonation(){
     const jsonData = JSON.stringify(formData);
 
     // Send the form data to the PHP script via fetch API
-    fetch('donatenow_process.php',{ method: 'POST', headers: {
+    fetch('http://10.180.98.20/Khemenwebpage/donatenow_process.php',{ method: 'POST', headers: {
             'Content-Type': 'application/json', 
             'Authorization': 'Bearer token123'
         }, body: jsonData})
