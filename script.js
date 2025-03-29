@@ -49,8 +49,8 @@ window.onclick = function(event) {
     }
 }
 */
-document.getElementById("submit-btn").addEventListener("click", function(event) {
-    event.preventDefault(); //Prevent page from reloading
+document.getElementById("donationForm").addEventListener("submit", function(event) {
+    event.preventDefault(); //Prevent page from submitting default way
     submitDonation(); //send form data to PHP script
 });
 
