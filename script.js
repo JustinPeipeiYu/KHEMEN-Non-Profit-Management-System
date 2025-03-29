@@ -49,12 +49,12 @@ window.onclick = function(event) {
     }
 }
 */
-document.getElementById("donationForm").addEventListener("submit", function(event) {
+document.getElementById("submit-btn").addEventListener("click", function(event) {
     event.preventDefault(); //Prevent page from reloading
-    submitDonation(event); //send form data to PHP script
+    submitDonation(); //send form data to PHP script
 });
 
-function submitDonation(event){
+function submitDonation(){
     if (!validateForm()) {
         return; //Stop if validation fails
     }
