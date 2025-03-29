@@ -51,16 +51,13 @@ window.onclick = function(event) {
 */
 document.getElementById("donationForm").addEventListener("submit", function(event) {
     event.preventDefault(); //Prevent page from reloading
+    submitDonation(event); //send form data to PHP script
+});
 
+function submitDonation(event){
     if (!validateForm()) {
         return; //Stop if validation fails
     }
-
-    submitDonation(event); //send form data to PHP script
-    return false;
-});
-
-function submitDonation(){
     // preparing form data
     const formData = {
         firstname: document.getElementById('firstname').value,
